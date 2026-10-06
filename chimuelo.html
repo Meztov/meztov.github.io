@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chimuelo: Miriam Meza's interactive arts-center project connecting computer vision modules with Processing.">
+  <title>Chimuelo | Miriam Meza</title>
+  <style>
+      :root {
+        --bg:#0d1121;
+        --panel:#181f35;
+        --ink:#edf0ff;
+        --muted:#b9c3dc;
+        --accent:#b9a3ff;
+        --cyan:#85dded;
+        --line:#303a55;
+      }
+      * {
+        box-sizing:border-box;
+      }
+      html {
+        scroll-behavior:smooth;
+      }
+      body {
+        margin:0;
+        background:var(--bg);
+        color:var(--ink);
+        font:16px/1.75 system-ui,sans-serif;
+      }
+      a {
+        color:var(--cyan);
+      }
+      a:focus-visible,button:focus-visible {
+        outline:3px solid var(--cyan);
+        outline-offset:5px;
+      }
+      header,main,footer {
+        max-width:1100px;
+        margin:auto;
+        padding:24px;
+      }
+      nav {
+        display:flex;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap:wrap;
+        border-bottom:1px solid var(--line);
+        padding-bottom:20px;
+      }
+      .brand {
+        color:var(--ink);
+        font-weight:700;
+        text-decoration:none;
+      }
+      .hero {
+        padding:65px 0 40px;
+        max-width:850px;
+      }
+      .eyebrow {
+        color:var(--cyan);
+        font-size:12px;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+      }
+      h1 {
+        font-size:clamp(38px,6vw,70px);
+        line-height:1.08;
+        letter-spacing:-.045em;
+        margin:18px 0 24px;
+      }
+      h2 {
+        font-size:30px;
+        line-height:1.3;
+        margin:0 0 15px;
+      }
+      h3 {
+        font-size:20px;
+        margin:0 0 10px;
+      }
+      p {
+        margin:0 0 16px;
+      }
+      .lead {
+        font-size:21px;
+        color:var(--muted);
+      }
+      .tags {
+        display:flex;
+        gap:9px;
+        flex-wrap:wrap;
+      }
+      .tag {
+        border:1px solid var(--line);
+        border-radius:30px;
+        padding:5px 14px;
+        font-size:13px;
+        color:var(--muted);
+      }
+      section {
+        padding:40px 0;
+        border-top:1px solid var(--line);
+        scroll-margin-top:20px;
+      }
+      .grid {
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:22px;
+      }
+      .card {
+        background:var(--panel);
+        padding:26px;
+        border-radius:18px;
+        border:1px solid var(--line);
+      }
+      .muted,figcaption {
+        color:var(--muted);
+      }
+      .number {
+        color:var(--accent);
+        font-size:13px;
+        font-weight:700;
+        letter-spacing:.12em;
+      }
+      .steps {
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:12px;
+      }
+      .step {
+        padding:20px;
+        background:var(--panel);
+        border-radius:14px;
+      }
+      .step p {
+        font-size:14px;
+        color:var(--muted);
+        margin:0;
+      }
+      figure {
+        margin:0;
+      }
+      .media {
+        aspect-ratio:16/9;
+        background:linear-gradient(135deg,#242e4c,#171e32);
+        border:1px dashed #61708f;
+        border-radius:14px;
+        display:grid;
+        place-content:center;
+        text-align:center;
+        padding:22px;
+        overflow:hidden;
+      }
+      .media strong {
+        font-size:20px;
+      }
+      .media span {
+        font-size:13px;
+        color:var(--muted);
+      }
+      video {
+        width:100%;
+        display:block;
+        background:#000;
+        border-radius:14px;
+      }
+      .shot {
+        width:100%;
+        aspect-ratio:16/9;
+        object-fit:contain;
+        background:#111729;
+        border-radius:14px;
+      }
+      figcaption {
+        padding:13px 2px;
+        font-size:14px;
+      }
+      table {
+        width:100%;
+        border-collapse:collapse;
+      }
+      th,td {
+        text-align:left;
+        padding:16px;
+        border-bottom:1px solid var(--line);
+        vertical-align:top;
+      }
+      th {
+        color:var(--accent);
+      }
+      .table-wrap {
+        overflow:auto;
+      }
+      .note {
+        border-left:3px solid var(--accent);
+        padding:15px 20px;
+        background:var(--panel);
+        border-radius:0 12px 12px 0;
+      }
+      .button {
+        display:inline-block;
+        text-decoration:none;
+        padding:10px 19px;
+        border:1px solid var(--line);
+        border-radius:10px;
+        color:var(--ink);
+        background:var(--panel);
+      }
+      footer {
+        border-top:1px solid var(--line);
+        color:var(--muted);
+        font-size:14px;
+        padding-top:30px;
+        padding-bottom:40px;
+      }
+      @media(max-width:700px) {
+        .grid {
+          grid-template-columns:1fr;
+        }
+        .steps {
+          grid-template-columns:repeat(2,1fr);
+        }
+        header,main,footer {
+          padding-left:20px;
+          padding-right:20px;
+        }
+        .hero {
+          padding-top:35px;
+        }
+        th,td {
+          padding:12px;
+          font-size:14px;
+        }
+      }
+      @media(prefers-reduced-motion:reduce) {
+        html {
+          scroll-behavior:auto;
+        }
+      }
+      .youtube-video {
+        width:100%;
+        aspect-ratio:16/9;
+        display:block;
+        border:0;
+        border-radius:14px;
+        background:#000;
+      }
+    
+    .overview { grid-column: 1 / -1; }
+    .note { margin-top: 22px; }
+    .section-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="index.html">Miriam Meza / Portfolio</a>
+    <div><a href="#overview">Overview</a> &nbsp; <a href="#technology">Technology</a> &nbsp; <a href="#oracle">Activities</a> &nbsp; <a href="#gallery">Gallery</a></div>
+  </nav>
+</header>
+<main>
+  <div class="hero">
+    <div class="eyebrow">Creative technology · Interactive learning</div>
+    <h1>Chimuelo</h1>
+    <p class="lead">An interactive arts-center experience where every activity uses Google MediaPipe computer vision, connecting camera-based interaction with games and creative exploration in Processing.</p>
+    <div class="tags">
+      <span class="tag">Processing</span><span class="tag">Python</span>
+      <span class="tag">Google MediaPipe</span><span class="tag">Speech-to-text AI</span><span class="tag">Hand interaction</span>
+      <span class="tag">Creative learning</span>
+    </div>
+    <div class="section-links">
+      <a class="button" href="#oracle">Story Oracle</a><a class="button" href="#maze">Maze</a>
+      <a class="button" href="#colors">Drawing</a><a class="button" href="#simon">Simon Says</a>
+    </div>
+  </div>
+  <section id="overview">
+    <div class="eyebrow">The complete experience</div>
+    <h2>One program. Four activities.</h2>
+    <p class="muted">The main screen provides access to Story Oracle, the maze, Drawing, and Simon Says. This overview introduces the complete program before exploring each activity individually.</p>
+    <div>
+      <figure><div class="media" data-youtube="overview"><strong>Video demonstration</strong><span>Video coming soon</span></div><figcaption>Complete program walkthrough: main screen and activity navigation.</figcaption></figure>
+      
+    </div>
+  </section>
+  <section id="technology">
+    <div class="eyebrow">Development and design</div>
+    <h2>Technologies and engineering choices</h2>
+    <div class="grid">
+      <div class="card"><h3>Processing</h3><p class="muted">Visual interfaces and interactive activity logic. Processing is well suited to creative coding, animation, and rapid iteration on visual experiences.</p></div>
+      <div class="card"><h3>Python &amp; computer vision</h3><p class="muted">All four activities use the Google MediaPipe vision module. Python processes camera-based input and communicates interaction signals to Processing, providing a shared vision layer across the experience.</p></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Technique</th><th>Purpose</th><th>Why use it?</th></tr></thead>
+        <tbody>
+          <tr><td>Hand landmark tracking</td><td>Locate relevant points on the hand in gesture-driven modules.</td><td>Google MediaPipe supplies the hand landmarks used by the shared vision module across Story Oracle, Drawing Studio, the maze, and Simon Says.</td></tr>
+          <tr><td>Pinch detection</td><td>Interpret proximity between the thumb and index finger as a gesture.</td><td>A simple, deliberate gesture can trigger an action without a physical controller.</td></tr>
+          <tr><td>UDP communication</td><td>Exchange interaction messages between Python and Processing in the gesture modules.</td><td>Lightweight messages suit frequent local updates. Applications must account for possible message loss and keep their interaction state consistent.</td></tr>
+          <tr><td>AI-assisted speech transcription</td><td>Capture children’s spoken stories as text in Story Oracle.</td><td>It preserves their own narration and supports exporting their stories to Word documents.</td></tr>
+          <tr><td>Trigger gating</td><td>Prevent a sustained gesture from repeatedly launching an activity.</td><td>The same gesture can remain visible across many frames; gating is a design measure to avoid duplicate actions.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Shared architecture: camera input → Google MediaPipe vision module → interaction signals → Processing activities. Story Oracle also includes AI-assisted speech-to-text and Word document export.</p>
+  </section>
+  <section id="oracle">
+  <div class="eyebrow">Activity / Story Oracle</div>
+  <h2>Story Oracle</h2>
+  <p class="muted">Character and action dice provide prompts for children to invent and narrate their own stories. AI-assisted speech-to-text captures their narration and turns it into text for a Word document.</p>
+  <div>
+    <figure>
+      <div class="media" data-youtube="oracle"><strong>Video demonstration</strong><span>Video coming soon</span></div>
+      <figcaption>Story Oracle: activity demonstration.</figcaption>
+    </figure>
+    
+  </div>
+  <div class="note"><strong>Interaction and purpose.</strong> Children are the authors: they imagine and tell the story. AI supports transcription, converting their spoken words into text and helping preserve the story in a Word document. Google MediaPipe provides the activity’s vision-based interaction.</div>
+</section><section id="maze">
+  <div class="eyebrow">Activity / Gesture-Controlled Maze</div>
+  <h2>Gesture-Controlled Maze</h2>
+  <p class="muted">The Fox and the Rose: a hand-controlled maze adventure with multiple levels. The demonstration shows the player guiding the fox through the paths toward the rose.</p>
+  <div>
+    <figure>
+      <div class="media" data-youtube="maze"><strong>Video demonstration</strong><span>Video coming soon</span></div>
+      <figcaption>Gesture-Controlled Maze: activity demonstration.</figcaption>
+    </figure>
+    
+  </div>
+  <div class="note"><strong>Interaction and purpose.</strong> Hand tracking and pinch detection translate gestures into interaction signals for the game.</div>
+</section><section id="colors">
+  <div class="eyebrow">Activity / Drawing Studio</div>
+  <h2>Drawing Studio</h2>
+  <p class="muted">A drawing activity connected to the shared Google MediaPipe vision module, combining creative expression with camera-based interaction.</p>
+  <div>
+    <figure>
+      <div class="media" data-youtube="colors"><strong>Video demonstration</strong><span>Video coming soon</span></div>
+      <figcaption>Drawing Studio: activity demonstration.</figcaption>
+    </figure>
+    
+  </div>
+  <div class="note"><strong>Interaction and purpose.</strong> The vision module connects hand interaction with the creative activity in Processing. Watch the demonstration to explore the drawing experience.</div>
+</section><section id="simon">
+  <div class="eyebrow">Activity / Simon Says</div>
+  <h2>Simon Says</h2>
+  <p class="muted">An interactive Simon Says game using the shared Google MediaPipe vision module and Processing.</p>
+  <div>
+    <figure>
+      <div class="media" data-youtube="simon"><strong>Video demonstration</strong><span>Video coming soon</span></div>
+      <figcaption>Simon Says: activity demonstration.</figcaption>
+    </figure>
+    
+  </div>
+  <div class="note"><strong>Interaction and purpose.</strong> The player observes a color sequence and responds through camera-based hand interaction. Processing displays the colored panels and game feedback; Google MediaPipe supplies the shared vision input.</div>
+</section>
+  <section id="gallery">
+    <div class="eyebrow">Captured from the demonstrations</div>
+    <h2>Project gallery</h2>
+    <p class="muted">Two frames from each activity, plus the main screen. Click an image to view it at full size.</p>
+    <div class="grid">
+      <figure>
+        <a href="chimuelo-main.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-main.jpg" alt="Main screen — access to all four activities" loading="lazy">
+        </a>
+        <figcaption>Main screen — access to all four activities.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-oracle-01.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-oracle-01.jpg" alt="Story Oracle — character and action dice" loading="lazy">
+        </a>
+        <figcaption>Story Oracle — character and action dice.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-oracle-02.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-oracle-02.jpg" alt="Story Oracle — a different combination of story prompts" loading="lazy">
+        </a>
+        <figcaption>Story Oracle — a different combination of story prompts.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-drawing-01.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-drawing-01.jpg" alt="Drawing Studio — initial strokes and color selection" loading="lazy">
+        </a>
+        <figcaption>Drawing Studio — initial strokes and color selection.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-drawing-02.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-drawing-02.jpg" alt="Drawing Studio — a multicolor composition" loading="lazy">
+        </a>
+        <figcaption>Drawing Studio — a multicolor composition.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-maze-01.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-maze-01.jpg" alt="The Fox and the Rose — hand tracking and the first maze" loading="lazy">
+        </a>
+        <figcaption>The Fox and the Rose — hand tracking and the first maze.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-maze-02.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-maze-02.jpg" alt="The Fox and the Rose — the second maze level" loading="lazy">
+        </a>
+        <figcaption>The Fox and the Rose — the second maze level.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-simon-01.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-simon-01.jpg" alt="Simon Says — responding to the sequence with hand input" loading="lazy">
+        </a>
+        <figcaption>Simon Says — responding to the sequence with hand input.</figcaption>
+      </figure>
+      <figure>
+        <a href="chimuelo-simon-02.jpg" target="_blank" rel="noopener noreferrer">
+          <img class="shot" src="chimuelo-simon-02.jpg" alt="Simon Says — observing the color sequence" loading="lazy">
+        </a>
+        <figcaption>Simon Says — observing the color sequence.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section>
+    <div class="grid">
+      <div><div class="eyebrow">My contribution</div><h2>Connecting input with experience</h2><p class="muted">I develop the interactive application and its integration with computer vision modules, combining software engineering with experience teaching programming and creative technology.</p></div>
+      <div class="card"><h3>Explore more projects</h3><p class="muted">Computer vision, interactive applications, and creative software.</p><a class="button" href="index.html">← Back to portfolio</a> <a class="button" href="https://github.com/Meztov">GitHub profile ↗</a></div>
+    </div>
+  </section>
+</main>
+<footer>Miriam Meza · Software Engineer · M.Sc. in Electronic Engineering</footer>
+<script>
+  // Paste only the YouTube video ID between the quotes below.
+  // Example: https://youtu.be/ABC123 becomes "ABC123".
+  const videoIds = {
+    overview: "Y08gK9wySVA", // Complete program
+    oracle: "X8IPhWYa8QQ",   // Story Oracle
+    maze: "uju1Ze6sLf8",     // Maze
+    colors: "QGvieVxTlB8",   // Colors
+    simon: "Z_k_0axnou0"     // Simon Says
+  };
+
+  document.querySelectorAll('[data-youtube]').forEach((slot) => {
+    const id = videoIds[slot.dataset.youtube];
+    if (!id || !/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    const frame = document.createElement('iframe');
+    frame.className = 'youtube-video';
+    frame.src = 'https://www.youtube.com/embed/' + id;
+    frame.title = slot.parentElement.querySelector('figcaption').textContent;
+    frame.loading = 'lazy';
+    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.allowFullscreen = true;
+    slot.replaceWith(frame);
+  });
+
+</script>
+</body>
+</html>
