@@ -6,7 +6,7 @@
 
   <meta
     name="description"
-    content="Miriam Meza — Software Engineer with an M.Sc. in Electronic Engineering. Explore projects in computer vision, interactive applications, and Android development."
+    content="Miriam Meza — Software Engineer with an M.Sc. in Electronic Engineering. Projects in computer vision, interactive applications, and Android development."
   >
 
   <title>Miriam Meza | Portfolio</title>
@@ -132,6 +132,34 @@
       background: #263252;
     }
 
+    .about-panel {
+      padding: 28px;
+      border: 1px solid #354160;
+      border-radius: 16px;
+      background: #1b223b;
+    }
+
+    .about-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .research {
+      margin-top: 24px;
+      padding: 24px;
+      border-left: 4px solid #b8a4ff;
+      border-radius: 0 12px 12px 0;
+      background: #b8a4ff0d;
+    }
+
+    .research h3 {
+      margin-top: 0;
+      color: #d2c5ff;
+    }
+
+    .research p:last-child {
+      margin-bottom: 0;
+    }
+
     .projects-heading {
       color: #edf0ff;
       font-size: 34px;
@@ -208,34 +236,6 @@
 
     .project-card.orbita .project-button {
       background: #ffb4d2;
-    }
-
-    .about-panel {
-      padding: 28px;
-      border: 1px solid #354160;
-      border-radius: 16px;
-      background: #1b223b;
-    }
-
-    .about-panel p:last-child {
-      margin-bottom: 0;
-    }
-
-    .research {
-      margin-top: 24px;
-      padding: 24px;
-      border-left: 4px solid #b8a4ff;
-      border-radius: 0 12px 12px 0;
-      background: #b8a4ff0d;
-    }
-
-    .research h3 {
-      margin-top: 0;
-      color: #d2c5ff;
-    }
-
-    .research p:last-child {
-      margin-bottom: 0;
     }
 
     .skills-grid {
@@ -330,15 +330,21 @@
         padding: 24px 20px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
   </style>
 </head>
 
 <body>
   <main>
     <nav aria-label="Main navigation">
-      <a href="#projects">Projects</a>
       <a href="#about">About me</a>
-      <a href="#skills">Technologies</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Technologies &amp; skills</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -374,6 +380,55 @@
         </a>
       </div>
     </header>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About me</h2>
+
+      <div class="about-panel">
+        <p>
+          I am a Software Engineer with a Master's degree in
+          Electronic Engineering, focused on Signal Processing.
+          I develop interactive applications and computer vision
+          projects, combining software engineering, image processing,
+          and creative problem-solving.
+        </p>
+
+        <p>
+          My interests include image analysis, gesture-based
+          interaction, and visual interfaces. I enjoy turning
+          technical ideas into applications that people can
+          explore and use.
+        </p>
+
+        <p>
+          I also bring experience teaching programming, robotics,
+          and digital design. Working with learners of different
+          ages has helped me explain complex concepts clearly
+          and design activities with users in mind.
+        </p>
+      </div>
+
+      <div class="research">
+        <h3>
+          Master's research — Foreground–background segmentation
+        </h3>
+
+        <p>
+          During my master's research, I worked with Markov Random
+          Fields for foreground–background segmentation. This
+          approach combines image information with spatial
+          relationships between neighboring pixels to support
+          consistent segmentation.
+        </p>
+
+        <p>
+          This work strengthened my foundation in probabilistic
+          modeling, signal processing, and computer vision,
+          connecting mathematical models with practical image
+          analysis.
+        </p>
+      </div>
+    </section>
 
     <section id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title" class="projects-heading">
@@ -488,55 +543,6 @@
           Explore project ↗
         </a>
       </article>
-    </section>
-
-    <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">About me</h2>
-
-      <div class="about-panel">
-        <p>
-          I am a Software Engineer with a Master's degree in
-          Electronic Engineering, focused on Signal Processing.
-          I develop interactive applications and computer vision
-          projects, combining software engineering, image processing,
-          and creative problem-solving.
-        </p>
-
-        <p>
-          My interests include image analysis, gesture-based
-          interaction, and visual interfaces. I enjoy turning
-          technical ideas into applications that people can
-          explore and use.
-        </p>
-
-        <p>
-          I also bring experience teaching programming, robotics,
-          and digital design. Working with learners of different
-          ages has helped me explain complex concepts clearly
-          and design activities with users in mind.
-        </p>
-      </div>
-
-      <div class="research">
-        <h3>
-          Master's research — Foreground–background segmentation
-        </h3>
-
-        <p>
-          During my master's research, I worked with Markov Random
-          Fields for foreground–background segmentation. This
-          approach combines image information with spatial
-          relationships between neighboring pixels to support
-          consistent segmentation.
-        </p>
-
-        <p>
-          This work strengthened my foundation in probabilistic
-          modeling, signal processing, and computer vision,
-          connecting mathematical models with practical image
-          analysis.
-        </p>
-      </div>
     </section>
 
     <section id="skills" aria-labelledby="skills-title">
