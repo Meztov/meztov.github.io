@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="Miriam Meza — Software Engineer with an M.Sc. in Electronic Engineering. Explore projects in computer vision, interactive applications, and Android development."
+  >
+
   <title>Miriam Meza | Portfolio</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,207 +29,638 @@
     }
 
     main {
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
-      padding: 60px 24px;
+      padding: 40px 24px 60px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    nav a {
+      font-weight: bold;
+      text-decoration: none;
     }
 
     h1 {
-      font-size: 42px;
-      margin-bottom: 8px;
+      margin: 12px 0;
+      font-size: clamp(38px, 7vw, 58px);
+      line-height: 1.2;
     }
 
     h2 {
+      margin: 0 0 20px;
       color: #b8a4ff;
+      font-size: 30px;
+      line-height: 1.3;
+    }
+
+    h3 {
+      line-height: 1.4;
     }
 
     a {
       color: #83dcff;
+      text-underline-offset: 4px;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 5px;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    section {
+      margin-top: 64px;
+      scroll-margin-top: 24px;
+    }
+
+    .eyebrow {
+      color: #83dcff;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .intro {
+      max-width: 760px;
+      color: #bdc7e4;
+      font-size: 18px;
+    }
+
+    .hero-description {
+      max-width: 700px;
       color: #bdc7e4;
     }
 
-    article {
-      background: #1b223b;
-      padding: 24px;
-      margin: 20px 0;
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 20px;
+      border-radius: 10px;
+      background: #83dcff;
+      color: #101426;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: #b5eaff;
+    }
+
+    .button.secondary {
+      border: 1px solid #58658e;
+      background: transparent;
+      color: #edf0ff;
+    }
+
+    .button.secondary:hover {
+      background: #263252;
+    }
+
+    .projects-heading {
+      color: #edf0ff;
+      font-size: 34px;
+    }
+
+    .project-card {
+      padding: 30px;
+      margin: 28px 0;
+      border: 1px solid #58658e;
+      border-left: 6px solid #83dcff;
       border-radius: 16px;
+      background: linear-gradient(135deg, #263252, #1b223b);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     }
 
-    img {
-      max-width: 100%;
-      border-radius: 12px;
+    .project-card h3 {
+      margin: 8px 0 14px;
+      font-size: 28px;
+      line-height: 1.3;
     }
 
-    iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 0;
-      border-radius: 12px;
+    .project-card h3 a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .project-card h3 a:hover {
+      text-decoration: underline;
+    }
+
+    .project-label {
+      margin: 0;
+      color: #83dcff;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .project-button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      background: #83dcff;
+      color: #101426;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .project-button:hover {
+      filter: brightness(1.1);
+    }
+
+    .project-card.chimuelo {
+      border-left-color: #b8a4ff;
+    }
+
+    .project-card.chimuelo .project-label {
+      color: #b8a4ff;
+    }
+
+    .project-card.chimuelo .project-button {
+      background: #b8a4ff;
+    }
+
+    .project-card.orbita {
+      border-left-color: #ffb4d2;
+    }
+
+    .project-card.orbita .project-label {
+      color: #ffb4d2;
+    }
+
+    .project-card.orbita .project-button {
+      background: #ffb4d2;
+    }
+
+    .about-panel {
+      padding: 28px;
+      border: 1px solid #354160;
+      border-radius: 16px;
+      background: #1b223b;
+    }
+
+    .about-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .research {
+      margin-top: 24px;
+      padding: 24px;
+      border-left: 4px solid #b8a4ff;
+      border-radius: 0 12px 12px 0;
+      background: #b8a4ff0d;
+    }
+
+    .research h3 {
+      margin-top: 0;
+      color: #d2c5ff;
+    }
+
+    .research p:last-child {
+      margin-bottom: 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 24px;
+      border: 1px solid #354160;
+      border-radius: 16px;
+      background: #1b223b;
+    }
+
+    .skill-card h3 {
+      margin-top: 0;
+      color: #d2c5ff;
+      font-size: 19px;
+    }
+
+    .skill-card p {
+      color: #bdc7e4;
+    }
+
+    .skill-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      padding: 5px 11px;
+      border: 1px solid #465476;
+      border-radius: 999px;
+      color: #edf0ff;
+      font-size: 13px;
+    }
+
+    .contact-panel {
+      padding: 28px;
+      border: 1px solid #58658e;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #263252, #1b223b);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid #354160;
+      color: #bdc7e4;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 28px 18px 48px;
+      }
+
+      nav {
+        gap: 18px;
+        margin-bottom: 36px;
+      }
+
+      section {
+        margin-top: 48px;
+      }
+
+      .project-card {
+        padding: 24px 20px;
+      }
+
+      .project-card h3 {
+        font-size: 25px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-panel,
+      .contact-panel {
+        padding: 24px 20px;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
-    <h1>Miriam Meza</h1>
+    <nav aria-label="Main navigation">
+      <a href="#projects">Projects</a>
+      <a href="#about">About me</a>
+      <a href="#skills">Technologies</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-    <p class="intro">
-      Software Engineer | M.Sc. in Electronic Engineering |
-      Python, Kotlin &amp; C++ | AI &amp; Computer Vision
-    </p>
+    <header>
+      <p class="eyebrow">
+        Software engineering · Computer vision · Interactive applications
+      </p>
 
-   <h2>About me</h2>
+      <h1>Miriam Meza</h1>
 
-    <p>
-      I am a Software Engineer with a Master's degree in Electronic
-      Engineering, focused on Signal Processing. I develop interactive
-      applications and computer vision projects, combining software
-      engineering, image processing, and creative problem-solving.
-    </p>
-    
-    <p>
-      During my master's research, I worked with Markov Random Fields
-      for foreground–background segmentation. This approach uses
-      relationships between neighboring pixels to support image
-      segmentation, combining image information with spatial context.
-      This work strengthened my foundation in probabilistic modeling,
-      image analysis, and computer vision.
-    </p>
-    
-    <p>
-      My projects include a virtual fitting room for garment
-      visualization, gesture-controlled educational activities,
-      and an Android application for recording and exploring emotions.
-      I enjoy connecting technical ideas with visual interfaces
-      that people can understand and interact with.
-    </p>
-    
-    <p>
-      I also bring experience teaching programming, robotics, and
-      digital design. Developing activities for different ages has
-      helped me explain complex concepts clearly and design
-      interactive experiences with users in mind.
-    </p>
-    
-    <h2>Technologies &amp; skills</h2>
-    
-    <article>
-      <h3>Programming languages</h3>
-      <p>
-        Python, Kotlin, C++, C#, and Processing.
+      <p class="intro">
+        Software Engineer | M.Sc. in Electronic Engineering |
+        Python, Kotlin &amp; C++ | AI &amp; Computer Vision
       </p>
-    </article>
-    
-    <article>
-      <h3>Computer vision &amp; image processing</h3>
-      <p>
-        OpenCV, MediaPipe, image segmentation, hand landmark
-        tracking, gesture recognition, and real-time visual
-        interaction.
-      </p>
-      <p>
-        Research experience with Markov Random Fields for
-        foreground–background segmentation.
-      </p>
-    </article>
-    
-    <article>
-      <h3>Android development</h3>
-      <p>
-        Kotlin, Jetpack Compose, Firebase Authentication,
-        and Google Sign-In.
-      </p>
-      <p>
-        Interactive interfaces, application state management,
-        and visual representations of user-entered data.
-      </p>
-    </article>
-    
-    <article>
-      <h3>Interactive applications</h3>
-      <p>
-        Processing and Python integration, UDP communication,
-        webcam-based input, and gesture-controlled experiences.
-      </p>
-    </article>
-    
-    <article>
-      <h3>Education &amp; creative technology</h3>
-      <p>
-        Programming instruction, educational robotics, Arduino,
-        micro:bit, LEGO SPIKE, VEX, App Inventor, Construct 3,
-        and Blender.
-      </p>
-    </article>
 
-    <h2>Projects</h2>
+      <p class="hero-description">
+        I build interactive applications that connect software,
+        visual data, and creative experiences — from gesture-controlled
+        activities to virtual garment visualization and Android
+        interfaces.
+      </p>
 
-    <article>
-      <h3>
-        <a href="smart-fitting-room.html">
-          Smart Virtual Fitting Room ↗
+      <div class="hero-links">
+        <a class="button" href="#projects">
+          Explore my projects ↓
         </a>
-      </h3>
 
-      <p>
-        A project exploring computer vision and garment visualization
-        for an interactive virtual fitting experience.
-      </p>
-
-      <p>
-        <strong>Technologies:</strong> Python and OpenCV.
-      </p>
-    </article>
-
-    <article>
-      <h3>
-        <a href="chimuelo.html">
-          Chimuelo ↗
+        <a
+          class="button secondary"
+          href="https://github.com/Meztov"
+        >
+          My GitHub profile ↗
         </a>
-      </h3>
+      </div>
+    </header>
 
-      <p>
-        An interactive project integrating computer vision modules
-        with Processing.
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="projects-heading">
+        Featured projects
+      </h2>
+
+      <p class="intro">
+        Explore my work in computer vision, interactive experiences,
+        and Android development. Each project includes a closer look
+        at its features and technologies.
       </p>
 
+      <article class="project-card">
+        <p class="project-label">
+          01 / Computer vision
+        </p>
+
+        <h3>
+          <a href="smart-fitting-room.html">
+            Smart Virtual Fitting Room
+          </a>
+        </h3>
+
+        <p>
+          A project exploring computer vision and garment visualization
+          for an interactive virtual fitting experience.
+        </p>
+
+        <p>
+          It combines camera input and image processing to explore
+          how digital garments can be positioned and visualized
+          over a live image.
+        </p>
+
+        <p>
+          <strong>Technologies:</strong> Python and OpenCV.
+        </p>
+
+        <a
+          class="project-button"
+          href="smart-fitting-room.html"
+        >
+          Explore project ↗
+        </a>
+      </article>
+
+      <article class="project-card chimuelo">
+        <p class="project-label">
+          02 / Gesture-controlled experiences
+        </p>
+
+        <h3>
+          <a href="chimuelo.html">
+            Chimuelo
+          </a>
+        </h3>
+
+        <p>
+          An interactive collection of educational activities
+          controlled through hand gestures. Storytelling, drawing,
+          maze navigation, and Simon Says connect computer vision
+          with creative play.
+        </p>
+
+        <p>
+          All activities use MediaPipe-based vision input. The
+          Story Oracle also uses AI-powered speech transcription
+          to turn children's own narrated stories into Word
+          documents.
+        </p>
+
+        <p>
+          <strong>Technologies:</strong>
+          Python, Processing, MediaPipe, and UDP communication.
+        </p>
+
+        <a class="project-button" href="chimuelo.html">
+          Explore project ↗
+        </a>
+      </article>
+
+      <article class="project-card orbita">
+        <p class="project-label">
+          03 / Android development
+        </p>
+
+        <h3>
+          <a href="orbita.html">
+            Órbita
+          </a>
+        </h3>
+
+        <p>
+          An Android emotional journal that transforms daily records
+          into an interactive planetary interface.
+        </p>
+
+        <p>
+          Users can record emotions, intensity, energy, and personal
+          notes, then explore their entries through a monthly
+          calendar. Selecting a planet opens the corresponding
+          record and its details.
+        </p>
+
+        <p>
+          <strong>Technologies:</strong>
+          Kotlin, Jetpack Compose, Firebase Authentication,
+          and Google Sign-In.
+        </p>
+
+        <a class="project-button" href="orbita.html">
+          Explore project ↗
+        </a>
+      </article>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About me</h2>
+
+      <div class="about-panel">
+        <p>
+          I am a Software Engineer with a Master's degree in
+          Electronic Engineering, focused on Signal Processing.
+          I develop interactive applications and computer vision
+          projects, combining software engineering, image processing,
+          and creative problem-solving.
+        </p>
+
+        <p>
+          My interests include image analysis, gesture-based
+          interaction, and visual interfaces. I enjoy turning
+          technical ideas into applications that people can
+          explore and use.
+        </p>
+
+        <p>
+          I also bring experience teaching programming, robotics,
+          and digital design. Working with learners of different
+          ages has helped me explain complex concepts clearly
+          and design activities with users in mind.
+        </p>
+      </div>
+
+      <div class="research">
+        <h3>
+          Master's research — Foreground–background segmentation
+        </h3>
+
+        <p>
+          During my master's research, I worked with Markov Random
+          Fields for foreground–background segmentation. This
+          approach combines image information with spatial
+          relationships between neighboring pixels to support
+          consistent segmentation.
+        </p>
+
+        <p>
+          This work strengthened my foundation in probabilistic
+          modeling, signal processing, and computer vision,
+          connecting mathematical models with practical image
+          analysis.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Technologies &amp; skills</h2>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>Programming languages</h3>
+
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">C++</span>
+            <span class="tag">C#</span>
+            <span class="tag">Processing</span>
+          </div>
+
+          <p>
+            Application development, interactive programs,
+            and integration between software components.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <h3>Computer vision &amp; image processing</h3>
+
+          <div class="tags">
+            <span class="tag">OpenCV</span>
+            <span class="tag">MediaPipe</span>
+            <span class="tag">Image segmentation</span>
+            <span class="tag">Hand tracking</span>
+          </div>
+
+          <p>
+            Camera-based interaction, hand landmark tracking,
+            gesture recognition, and foreground–background
+            segmentation.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <h3>Android development</h3>
+
+          <div class="tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">Jetpack Compose</span>
+            <span class="tag">Firebase Authentication</span>
+            <span class="tag">Google Sign-In</span>
+          </div>
+
+          <p>
+            Interactive interfaces, application state management,
+            authentication, and visual representations of
+            user-entered data.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <h3>Interactive applications</h3>
+
+          <div class="tags">
+            <span class="tag">Processing</span>
+            <span class="tag">Python</span>
+            <span class="tag">UDP</span>
+            <span class="tag">Gesture input</span>
+          </div>
+
+          <p>
+            Communication between vision modules and interactive
+            applications, webcam-based controls, and educational
+            experiences.
+          </p>
+        </article>
+
+        <article class="skill-card wide">
+          <h3>Education &amp; creative technology</h3>
+
+          <div class="tags">
+            <span class="tag">Arduino</span>
+            <span class="tag">micro:bit</span>
+            <span class="tag">LEGO SPIKE</span>
+            <span class="tag">VEX</span>
+            <span class="tag">App Inventor</span>
+            <span class="tag">Construct 3</span>
+            <span class="tag">Blender</span>
+          </div>
+
+          <p>
+            Programming instruction, educational robotics,
+            digital design, and creative activities that connect
+            technical learning with hands-on exploration.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+
+      <div class="contact-panel">
+        <p>
+          I am interested in opportunities in software development,
+          Python, AI, and computer vision.
+        </p>
+
+        <p>
+          Visit my GitHub profile to explore my repositories
+          and connect with my work.
+        </p>
+
+        <a
+          class="button"
+          href="https://github.com/Meztov"
+        >
+          Visit my GitHub profile ↗
+        </a>
+      </div>
+    </section>
+
+    <footer>
       <p>
-        <strong>Technologies:</strong> Python and Processing.
+        Miriam Meza · Software Engineering &amp; Computer Vision
       </p>
-    </article>
-
-<article>
-  <h3>
-    <a href="orbita.html">
-      Órbita ↗
-    </a>
-  </h3>
-
-  <p>
-    An Android emotional journal that transforms daily records
-    into an interactive planetary interface. Users can record
-    emotions, intensity, energy, and personal notes, then explore
-    their entries through a monthly calendar.
-  </p>
-
-  <p>
-    <strong>Technologies:</strong>
-    Kotlin, Jetpack Compose, Firebase Authentication,
-    and Google Sign-In.
-  </p>
-</article>
-
-    <h2>Contact</h2>
-
-    <p>
-      <a href="https://github.com/Meztov">
-        My GitHub profile
-      </a>
-    </p>
+    </footer>
   </main>
 </body>
 </html>
-<!-- Retry GitHub Pages deployment -->
